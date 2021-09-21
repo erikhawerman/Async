@@ -33,7 +33,6 @@ slider.addEventListener("click", function () {
     btnPause.classList.contains("play")
       ? btnPause.classList.remove("play")
       : "";
-    console.log("hej");
     btnPause.classList.add("paused");
     setTimeout(function () {
       btnPause.style.display = "none";
@@ -47,7 +46,6 @@ slider.addEventListener("click", function () {
     btnPause.classList.contains("paused")
       ? btnPause.classList.remove("paused")
       : "";
-    console.log("test");
     btnPause.classList.add("play");
     nextSlide();
     run = setInterval(nextSlide, 2000);
@@ -62,7 +60,6 @@ startTimer();
 let hamburgerMenyUppe = false;
 
 function hamburgerMenuOpenClose() {
-  console.log("hej");
   $(".mobile-menu").slideToggle(100, function () {
     if (!hamburgerMenyUppe) {
       $(".page-to-dim").fadeTo(100, 0.1);
@@ -236,14 +233,12 @@ const validateBox = function (field, errorBox) {
   errorBox.style.display = "none";
 };
 const displayErrorBox = function (box, error) {
-  console.log("det fungerar");
   box.style.display = "inline";
   box.innerHTML = error;
 };
 
 const validateName = function (e) {
   const input = document.getElementById("Name").value;
-  console.log(input.length);
 
   if (containsSpecialChars.test(input)) {
     invalidateBox(e.target);
@@ -266,13 +261,11 @@ const validateName = function (e) {
     displayErrorBox(errorBoxName, errorContainsNumber);
     return;
   } else {
-    console.log("bort då");
     validateBox(e.target, errorBoxName);
   }
 };
 const validateEmail = function (e) {
   const input = document.getElementById("e-mail").value;
-  console.log("det här körs");
   if (!/[@]/.test(input) || !/[.]/.test(input)) {
     invalidateBox(e.target);
     displayErrorBox(errorBoxEmail, errorNotAnEmail);
@@ -289,14 +282,14 @@ const validateEmail = function (e) {
     return;
   } else {
     validateBox(e.target, errorBoxEmail);
-    console.log(typeof input);
   }
 };
 const validatePhone = function (e) {
   const input = document.getElementById("Phone").value;
-  if (Number(input) != /[^0-9]/) {
+  if (!/^\d+$/.test(input)) {
     invalidateBox(e.target);
     displayErrorBox(errorBoxPhone, errorNotaNumber);
+    return;
   }
   if (input.length < 3) {
     invalidateBox(e.target);
