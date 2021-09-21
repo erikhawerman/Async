@@ -193,6 +193,7 @@ const fyllstapel = function (stapel) {
 //Skapa en observer callback
 const stapelCallback = function (entries) {
   entries.forEach(function (e) {
+    if (!e.isIntersecting) return;
     fyllstapel(e.target);
     egenskapsObserver.unobserve(e.target);
   });

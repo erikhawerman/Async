@@ -25,21 +25,13 @@ const fyllstapel = function (stapel) {
 };
 
 const stapelCallback = function (entries) {
-  console.log(entries);
-  const [stapel1, stapel2, stapel3] = entries;
-  if (stapel1.isIntersecting) {
-    fyllstapel(stapel1.target);
-    observer.unobserve(stapel1.target);
-  }
-  if (stapel2.isIntersecting) {
-    fyllstapel(stapel2.target);
-    observer.unobserve(stapel2.target);
-  }
-  if (stapel3.isIntersecting) {
-    fyllstapel(stapel3.target);
-    observer.unobserve(stapel3.target);
-  }
+  entries.forEach(function (e) {
+    if (!e.isIntersecting) return;
+    fyllstapel(e.target);
+    observer.unobserve(e.target);
+  });
 };
+
 const observer = new IntersectionObserver(stapelCallback, {
   root: null,
   threshold: 1,
@@ -58,24 +50,19 @@ procentStapel(3, 25);
 
 //visa egenskaper
 const visaEgenskaper = function (entries) {
-  const [entry] = entries;
-  if (!entry.isIntersecting) return;
-  entry.target.classList.remove("hidden");
-  this.unobserve(entry.target);
+  entries.forEach(function (e) {
+    if (!e.isIntersecting) return;
+    e.target.classList.remove("hidden");
+    egenskapsObserver.unobserve(e.target);
+  });
 };
 const egenskapsObserver = new IntersectionObserver(visaEgenskaper, {
   root: null,
   threshold: 0.15,
 });
-const egenskapsObserver2 = new IntersectionObserver(visaEgenskaper, {
-  root: null,
-  threshold: 0.14,
-});
-egenskaper.forEach(function (egenskap, i) {
-  if (i % 2 === 0) egenskapsObserver.observe(egenskap);
-  else {
-    egenskapsObserver2.observe(egenskap);
-  }
+
+egenskaper.forEach(function (egenskap) {
+  egenskapsObserver.observe(egenskap);
 });
 
 console.log(egenskaper);
