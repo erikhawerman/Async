@@ -4,8 +4,8 @@ $(document).ready(function () {
 const staplar = Array.from(document.querySelectorAll(".ifylldstapel1"));
 const btnSkills = document.getElementById("vad-jag-kan");
 const btnMe = document.getElementById("vem-är-jag");
-const secondPage = document.getElementById("secondPage");
-const thirdPage = document.getElementById("thirdPage");
+const secondPage = document.querySelector(".second-page");
+const thirdPage = document.querySelector(".third-page");
 const egenskaper = document.querySelectorAll(".egenskap-container");
 
 btnSkills.addEventListener("click", function () {

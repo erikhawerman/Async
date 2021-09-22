@@ -155,7 +155,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 100%;
 }
 
 .skillbox-background {
@@ -433,4 +433,8 @@ input {
 .paused {
   border-style: double;
   border-width: 0px 0 0px 60px;
+}
+.hidden {
+  opacity: 0;
+  transform: translateX(8rem);
 }

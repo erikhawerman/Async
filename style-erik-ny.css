@@ -1,0 +1,121 @@
+.first-page {
+  display: block;
+}
+.first-page h1 {
+  margin: 10%;
+  color: white;
+  font-size: 1.5em;
+  padding-top: 20%;
+}
+.first-page p {
+  margin-top: 2%;
+  margin-bottom: 4%;
+}
+#erik-vector {
+  width: 50%;
+  height: auto;
+}
+.myButton {
+  background-color: transparent;
+  border: 1px solid;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 14px 13px;
+  margin-top: 25%;
+}
+.myButton:hover {
+  font-weight: 900;
+}
+.second-page p {
+  margin-top: 5%;
+  font-weight: 600;
+  text-align: start;
+}
+.stapel {
+  display: inline-block;
+  width: 60%;
+  height: 15px;
+  background-color: lightgrey;
+  border: 2px black solid;
+  border-radius: 16px;
+  margin-top: 7%;
+}
+.ifylldstapel1 {
+  border-radius: 16px;
+  display: block;
+  width: 0%;
+  height: 100%;
+  background-color: #6f2232;
+}
+.skill {
+  width: 25%;
+  height: 25%;
+  border-radius: 50%;
+  border: #1a1a1d 2px solid;
+  margin-top: 10%;
+}
+.egenskap-container {
+  width: 45%;
+  height: auto;
+  text-align: center;
+  display: inline-block;
+  margin: 5%;
+  transition: transform 1s, opacity 1s;
+}
+.egenskap-container img {
+  width: 85%;
+  height: auto;
+}
+@media screen and (min-width: 800px) {
+  .first-page h1 {
+    padding-top: 2%;
+    margin: 0;
+  }
+  .first-page p {
+    font-size: larger;
+  }
+  .myButton {
+    margin-top: 3%;
+  }
+  #erik-vector {
+    max-width: 20%;
+  }
+  .skill-container {
+    display: inline-block;
+    width: 20%;
+    height: auto;
+  }
+  .skill {
+    width: 40%;
+  }
+  .stapel {
+    margin-top: 4%;
+  }
+  #thirdPage h1 {
+    padding-top: 5%;
+    font-size: 350%;
+    padding-bottom: 2%;
+  }
+  .egenskap-container {
+    display: inline-block;
+    width: 40%;
+    height: 30vh;
+    margin: 0 0 5% 0;
+    padding: 0;
+  }
+  .egenskap-container img {
+    width: 75%;
+    height: 80%;
+  }
+}
+footer {
+  background-color: #1a1a1d;
+  color: white;
+  text-align: center;
+}
+footer a {
+  text-decoration: none;
+  color: white;
+}
