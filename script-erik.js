@@ -44,9 +44,10 @@ const procentStapel = function (stapel, procent) {
   staplar[stapel - 1].procent = procent;
 };
 
-procentStapel(1, 75);
-procentStapel(2, 50);
-procentStapel(3, 25);
+procentStapel(1, 90);
+procentStapel(2, 90);
+procentStapel(3, 70);
+// procentStapel(4, 60);
 
 //visa egenskaper
 const visaEgenskaper = function (entries) {

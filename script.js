@@ -8,6 +8,24 @@ const maxSlides = slides.length;
 let sliderRunning = true;
 let run;
 const pausePlayDelay = 500;
+const nextSlideDelay = 5000;
+// slider headline
+const omrade = document.getElementById("område");
+const omradenOrd = ["Problemlösning", "Effektivisering", "Spelutveckling"];
+const delayTyping = 200;
+let bokstavsIndex = 0;
+let typeInterval;
+
+const typeText = function (word) {
+  if (bokstavsIndex < omradenOrd[word].length) {
+    omrade.textContent += omradenOrd[word].charAt(bokstavsIndex);
+    bokstavsIndex++;
+  } else {
+    bokstavsIndex = 0;
+    clearInterval(typeInterval);
+  }
+};
+
 const goToSlide = function (slide) {
   slides.forEach(
     (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
@@ -23,6 +41,10 @@ const nextSlide = function () {
   }
 
   goToSlide(currentSlide);
+  omrade.textContent = "-";
+  typeInterval = setInterval(function () {
+    typeText(currentSlide);
+  }, delayTyping);
 };
 
 slider.addEventListener("click", function () {
@@ -30,6 +52,7 @@ slider.addEventListener("click", function () {
     btnPause.style.display = "block";
     sliderRunning = false;
     clearInterval(run);
+    clearInterval(typeInterval);
     btnPause.classList.contains("play")
       ? btnPause.classList.remove("play")
       : "";
@@ -48,11 +71,13 @@ slider.addEventListener("click", function () {
       : "";
     btnPause.classList.add("play");
     nextSlide();
-    run = setInterval(nextSlide, 2000);
+    bokstavsIndex = 0;
+    typeText(currentSlide);
+    run = setInterval(nextSlide, nextSlideDelay);
   }
 });
 const startTimer = function () {
-  run = setInterval(nextSlide, 2000);
+  run = setInterval(nextSlide, nextSlideDelay);
 };
 startTimer();
 

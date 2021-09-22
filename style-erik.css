@@ -122,7 +122,7 @@
   margin-top: 10%;
 }
 .egenskap-container {
-  width: 50%;
+  width: 45%;
   height: auto;
   text-align: center;
   display: inline-block;
@@ -130,7 +130,7 @@
   transition: transform 1s, opacity 1s;
 }
 .egenskap-container img {
-  width: 100%;
+  width: 85%;
   height: auto;
 }
 
@@ -160,7 +160,7 @@
   }
   .skill-container {
     display: inline-block;
-    width: 25%;
+    width: 20%;
     height: auto;
   }
   .skill {
@@ -177,7 +177,7 @@
   .egenskap-container {
     display: inline-block;
     width: 40%;
-    height: 45vh;
+    height: 30vh;
     margin: 0 0 5% 0;
     padding: 0;
   }
@@ -189,4 +189,13 @@
 .hidden {
   opacity: 0;
   transform: translateX(8rem);
+}
+footer {
+  background-color: #1a1a1d;
+  color: white;
+  text-align: center;
+}
+footer a {
+  text-decoration: none;
+  color: white;
 }

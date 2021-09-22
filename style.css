@@ -102,6 +102,16 @@ body {
   height: fit-content;
   min-height: 100vh;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.first-page h1 {
+  color: #c3073f;
+  font-weight: bolder;
+  font-size: 4em;
+  padding: 0;
+  margin: 0;
 }
 
 .second-page {
@@ -147,6 +157,7 @@ body {
   align-items: center;
   width: 100vw;
 }
+
 .skillbox-background {
   position: relative;
   margin: 3%;
@@ -158,16 +169,33 @@ body {
 .skillbox-to-fill {
   height: 100%;
   width: 0%;
-  background-color: rgba(149, 7, 64, 0.6);
+  /* background-color: rgba(149, 7, 64, 0.6); */
+  background-color: #950740;
 }
 
 .skillbox-text-container {
+  width: 100%;
   font-size: smaller;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  margin: 1em;
   z-index: 1;
+  box-shadow: 0 0 0 1px #1a1a1d;
+  height: 100%;
+}
+.skillbox-text-container h4 {
+  text-align: start;
+  font-size: 1.5em;
+}
+.skillbox-text-container span {
+  position: absolute;
+  transform: translateY(50%);
+  font-size: 2em;
+  font-weight: 900;
+}
+.skillbox-text-container p {
+  position: absolute;
+  bottom: 0;
 }
 
 .third-page {
@@ -176,12 +204,43 @@ body {
   min-height: 100vh;
   color: white;
 }
+.projectbackground {
+  text-align: center;
+}
+
+.project img {
+  display: block;
+  background-color: black;
+  width: 100%;
+  height: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.project {
+  width: 10em;
+  transition: transform 1s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.project:hover {
+  transform: scale(1.03);
+}
+
+.parDivs li {
+  display: inline-block;
+  padding: 2%;
+  margin: 1%;
+  margin-top: 10%;
+}
 
 .fourth-page {
   text-align: left;
   height: fit-content;
   min-height: 100vh;
   background-color: white;
+}
+.fourth-page h1 {
+  text-align: center;
 }
 input {
   display: block;
@@ -193,7 +252,7 @@ input {
   font-size: smaller;
 }
 .contact-form {
-  margin-left: 15%;
+  margin-left: 8%;
 }
 
 .menu-list-browser {
@@ -285,6 +344,20 @@ input {
   .team-presentation-paragraph {
     width: auto;
   }
+  .parDivs li {
+    margin-top: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .projectlist li {
+    text-align: center;
+    margin: 3%;
+  }
+
+  .parDivs {
+    width: 30vw;
+    display: inline-block;
+  }
   input {
     display: inline;
   }
@@ -306,7 +379,7 @@ input {
 /* SLIDER */
 
 .slider {
-  width: 60%;
+  width: 100%;
   height: 50vh;
   margin: 0 auto;
   position: relative;
