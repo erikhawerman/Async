@@ -106,7 +106,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-.first-page h1 {
+.group {
   color: #c3073f;
   font-weight: bolder;
   font-size: 4em;
@@ -119,6 +119,7 @@ body {
   height: fit-content;
   min-height: 100vh;
   background-color: white;
+  min-width: 100vw;
 }
 .second-page h6 {
   font-style: italic;
@@ -180,7 +181,7 @@ body {
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
-  box-shadow: 0 0 0 1px #1a1a1d;
+  /* box-shadow: 0 0 0 1px #1a1a1d; */
   height: 100%;
 }
 .skillbox-text-container h4 {
@@ -194,8 +195,8 @@ body {
   font-weight: 900;
 }
 .skillbox-text-container p {
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
 }
 
 .third-page {
@@ -204,8 +205,18 @@ body {
   min-height: 100vh;
   color: white;
 }
+#third-page::backdrop {
+  background-color: #1a1a1d;
+}
+
 .projectbackground {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.projectlist {
+  list-style-type: none;
 }
 
 .project img {
@@ -217,7 +228,8 @@ body {
   margin-right: auto;
 }
 .project {
-  width: 10em;
+  margin: 1.5em 0 1.5em 0;
+  width: 60vw;
   transition: transform 1s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
@@ -226,18 +238,12 @@ body {
   transform: scale(1.03);
 }
 
-.parDivs li {
-  display: inline-block;
-  padding: 2%;
-  margin: 1%;
-  margin-top: 10%;
-}
-
 .fourth-page {
   text-align: left;
   height: fit-content;
   min-height: 100vh;
   background-color: white;
+  position: relative;
 }
 .fourth-page h1 {
   text-align: center;
@@ -262,6 +268,26 @@ input {
   margin-top: 8em;
   width: 25%;
   height: auto;
+}
+.iconList {
+  text-align: center;
+}
+
+.iconList li {
+  display: inline-block;
+  margin-top: 20%;
+  margin-left: 5%;
+}
+
+.iconList li img {
+  width: 4em;
+  height: 4em;
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+}
+
+.iconList li img:hover {
+  transform: scale(1.5);
 }
 
 @media screen and (min-width: 763px) {
@@ -344,25 +370,39 @@ input {
   .team-presentation-paragraph {
     width: auto;
   }
-  .parDivs li {
-    margin-top: 0;
-    margin: 0;
-    padding: 0;
-  }
   .projectlist li {
     text-align: center;
-    margin: 3%;
-  }
-
-  .parDivs {
-    width: 30vw;
+    margin: 0 2em 0 2em;
     display: inline-block;
+    vertical-align: top;
+  }
+  .project {
+    width: 10vw;
   }
   input {
     display: inline;
   }
   .error {
     font-size: medium;
+  }
+  .iconList {
+    position: absolute;
+    right: 10%;
+    top: 25%;
+    width: 60%;
+    height: fit-content;
+  }
+
+  .iconList li {
+    width: 40%;
+    padding: 0%;
+    margin: 2%;
+  }
+  .iconList li img {
+    margin: 0%;
+    padding: 0%;
+    width: 30%;
+    height: auto;
   }
 }
 
@@ -434,7 +474,9 @@ input {
   border-style: double;
   border-width: 0px 0 0px 60px;
 }
+
 .hidden {
   opacity: 0;
-  transform: translateX(8rem);
+  transform: translateY(8rem);
+  overflow: hidden;
 }

@@ -1,0 +1,213 @@
+:root {
+  --color-primary: #c3073f;
+  --color-secondary: #950740;
+  --color-tertiary: #6f2232;
+  --color-primary-darker: #1a1a1d;
+  --color-secondary-darker: #4e4e51;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: var(--color-primary-darker);
+}
+
+.logo {
+  width: 4em;
+  transition-property: transform;
+  transition-duration: 1s;
+}
+.logo:hover {
+  animation-name: rotate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+
+
+
+.first-page {
+  text-align: center;
+  min-height: 100vh;
+  
+}
+
+
+
+.socialList {
+  list-style-type: none;
+  
+}
+
+.socialList li {
+  margin: 5%;
+}
+
+
+.socialList li img {
+  width: 7em;
+  height: 7em;
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+}
+
+.socialList li img:hover {
+  transform: scale(1.5);
+}
+
+
+h2,
+q,
+h3,
+p,
+address,
+a,
+li {
+  color: white;
+}
+
+.header {
+ 
+  width: 100%;
+}
+
+.aboutMe{
+  padding: 10%;
+}
+
+
+.bild1 {
+  border-radius: 50%;
+  height: 25vh;
+}
+
+
+.profilBild {
+  height: 30vh;
+  
+}
+
+
+.second-page {
+  text-align: center;
+  min-height: 100vh;
+  
+  background-color: white;
+}
+
+.kunskapsLåda
+ {
+  
+  height: auto;
+  width: 40%;
+  margin: auto;
+  margin-top: 4em;
+  background-color: black;
+  transition: 0.3s;
+  /* border-radius: 45%; */
+}
+.knappar {
+  padding: 10%;
+}
+
+#skills, #hittaMig {
+  color: white;
+  background-color: black;
+  width: 35%;
+  height: 5vh;
+  
+}
+
+.third-page {
+min-height: 100vh;
+text-align: center;
+}
+
+
+ .sqlBar,
+ .htmlBar,
+ .javaBar,
+ .jsBar,
+ .cssBar {
+  height: 100%;
+  width: 0;
+  background-color: #950740;
+}
+
+
+.kontakt {
+  background-color: gray;
+  width: 100%;
+  
+}
+
+.contact {
+  font-size: 18px;
+  text-align: left;
+  color: white;
+  
+}
+
+.secondHeader {
+  color: black;
+}
+
+
+
+
+.mailLink, .faceInsta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10%;
+
+}
+@media screen and (min-width: 768px) {
+  .jsSql, .javaHtml, .css{
+    display: inline-block;
+    width: 25%;
+    margin: 10% 10% 8% 10%;
+    
+  
+}
+
+.css{ 
+  margin-top: 0;
+}
+
+.kunskapsLåda {
+  width: 100%;
+    
+}
+
+.aboutMe {
+  width: 50%;
+  margin: auto;
+  padding: 3%;
+}
+
+.knappar {
+  
+  width: 60%;
+  margin: auto;
+}
+
+
+
+}

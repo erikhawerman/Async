@@ -1,85 +1,87 @@
 "use strict";
 // Slider
-const slides = document.querySelectorAll(".slide");
 const slider = document.querySelector(".slider");
-const btnPause = document.querySelector(".btn-pause");
-let currentSlide = 0;
-const maxSlides = slides.length;
-let sliderRunning = true;
-let run;
-const pausePlayDelay = 500;
-const nextSlideDelay = 5000;
-// slider headline
-const omrade = document.getElementById("område");
-const omradenOrd = ["Problemlösning", "Effektivisering", "Spelutveckling"];
-const delayTyping = 200;
-let bokstavsIndex = 0;
-let typeInterval;
+if (slider) {
+  const slides = document.querySelectorAll(".slide");
+  const btnPause = document.querySelector(".btn-pause");
+  let currentSlide = 0;
+  const maxSlides = slides.length;
+  let sliderRunning = true;
+  let run;
+  const pausePlayDelay = 500;
+  const nextSlideDelay = 5000;
+  // slider headline
+  const omrade = document.getElementById("område");
+  const omradenOrd = ["Problemlösning", "Effektivisering", "Spelutveckling"];
+  const delayTyping = 200;
+  let bokstavsIndex = 0;
+  let typeInterval;
 
-const typeText = function (word) {
-  if (bokstavsIndex < omradenOrd[word].length) {
-    omrade.textContent += omradenOrd[word].charAt(bokstavsIndex);
-    bokstavsIndex++;
-  } else {
-    bokstavsIndex = 0;
-    clearInterval(typeInterval);
-  }
-};
+  const typeText = function (word) {
+    if (bokstavsIndex < omradenOrd[word].length) {
+      omrade.textContent += omradenOrd[word].charAt(bokstavsIndex);
+      bokstavsIndex++;
+    } else {
+      bokstavsIndex = 0;
+      clearInterval(typeInterval);
+    }
+  };
 
-const goToSlide = function (slide) {
-  slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
-  );
-};
+  const goToSlide = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
+  };
 
-// Next slide
-const nextSlide = function () {
-  if (currentSlide === maxSlides - 1) {
-    currentSlide = 0;
-  } else {
-    currentSlide++;
-  }
+  // Next slide
+  const nextSlide = function () {
+    if (currentSlide === maxSlides - 1) {
+      currentSlide = 0;
+    } else {
+      currentSlide++;
+    }
 
-  goToSlide(currentSlide);
-  omrade.textContent = "-";
-  typeInterval = setInterval(function () {
-    typeText(currentSlide);
-  }, delayTyping);
-};
+    goToSlide(currentSlide);
+    omrade.textContent = "-";
+    typeInterval = setInterval(function () {
+      typeText(currentSlide);
+    }, delayTyping);
+  };
 
-slider.addEventListener("click", function () {
-  if (sliderRunning) {
-    btnPause.style.display = "block";
-    sliderRunning = false;
-    clearInterval(run);
-    clearInterval(typeInterval);
-    btnPause.classList.contains("play")
-      ? btnPause.classList.remove("play")
-      : "";
-    btnPause.classList.add("paused");
-    setTimeout(function () {
-      btnPause.style.display = "none";
-    }, pausePlayDelay);
-  } else {
-    btnPause.style.display = "block";
-    setTimeout(function () {
-      btnPause.style.display = "none";
-    }, pausePlayDelay);
-    sliderRunning = true;
-    btnPause.classList.contains("paused")
-      ? btnPause.classList.remove("paused")
-      : "";
-    btnPause.classList.add("play");
-    nextSlide();
-    bokstavsIndex = 0;
-    typeText(currentSlide);
+  slider.addEventListener("click", function () {
+    if (sliderRunning) {
+      btnPause.style.display = "block";
+      sliderRunning = false;
+      clearInterval(run);
+      clearInterval(typeInterval);
+      btnPause.classList.contains("play")
+        ? btnPause.classList.remove("play")
+        : "";
+      btnPause.classList.add("paused");
+      setTimeout(function () {
+        btnPause.style.display = "none";
+      }, pausePlayDelay);
+    } else {
+      btnPause.style.display = "block";
+      setTimeout(function () {
+        btnPause.style.display = "none";
+      }, pausePlayDelay);
+      sliderRunning = true;
+      btnPause.classList.contains("paused")
+        ? btnPause.classList.remove("paused")
+        : "";
+      btnPause.classList.add("play");
+      nextSlide();
+      bokstavsIndex = 0;
+      typeText(currentSlide);
+      run = setInterval(nextSlide, nextSlideDelay);
+    }
+  });
+  const startTimer = function () {
     run = setInterval(nextSlide, nextSlideDelay);
-  }
-});
-const startTimer = function () {
-  run = setInterval(nextSlide, nextSlideDelay);
-};
-startTimer();
+  };
+  startTimer();
+}
 
 //Hamburgermeny
 let hamburgerMenyUppe = false;
@@ -198,10 +200,15 @@ const procentStapel = function (stapel, procent) {
   staplar[stapel - 1].procent = procent;
 };
 
-procentStapel(1, 75);
-procentStapel(2, 45);
-procentStapel(3, 95);
-procentStapel(4, 25);
+//hämta enbart siffror från klassen stapel-to-get,
+var kunskapsProcent = $(".stapel-procent").map(function () {
+  return $(this).text().replace(/[^\d]/g, "");
+});
+//funktion för att föra in rätt parametrar i procentStapel
+for (let i = 1; i < $(".stapel-procent").length + 1; i++) {
+  procentStapel(i, kunskapsProcent[i - 1]);
+  console.log((i, kunskapsProcent[i - 1]));
+}
 
 //funktion för att fylla staplarna
 const fyllstapel = function (stapel) {
@@ -231,6 +238,56 @@ const egenskapsObserver = new IntersectionObserver(stapelCallback, {
 Array.from(staplar).forEach(function (egenskap) {
   egenskapsObserver.observe(egenskap);
 });
+
+//AJAX
+function getXML() {
+  $.ajax({
+    type: "GET",
+    url: "XMLFile.xml",
+    dataType: "xml",
+
+    error: function (e) {
+      alert("Det gick inte att läsa XML-filen");
+      console.log("XML reading Failed: ", e);
+    },
+
+    success: function (xmlData) {
+      $(xmlData)
+        .find("project")
+        .each(function () {
+          const manager = $(this).find("manager").text();
+          console.log(manager);
+
+          const title = $(this).find("title").text();
+          const customer = $(this).find("customer").text();
+          const startDate = $(this).find("startDate").text();
+          const endDate = $(this).find("endDate").text();
+          const image = $(this).find("image").text();
+          const description = $(this).find("description").text();
+
+          // add content to the HTML
+          let markup = `
+          <li>
+              <div class="project">
+                <img src="images/${image}" alt="" />
+                <div class="facts">
+                  <h3>${title}</h3>
+                  <p>${description}</p>
+                  <p><i> Manager: </i></p>
+                  <p>${manager}</p>
+                  <p><i> Customer: </i></p>
+                  <p>${customer}</p>
+                  <h5><i>${startDate} - ${endDate}</i></h5>
+                </div>
+              </div>
+            </li>
+          `;
+          $(".projectlist").append(markup);
+        });
+    },
+  });
+}
+getXML();
 
 // Validering
 const nameField = document.getElementById("Name");
@@ -329,7 +386,31 @@ const validatePhone = function (e) {
     validateBox(e.target, errorBoxPhone);
   }
 };
+if (nameField && emailField && phoneField) {
+  nameField.addEventListener("focusout", validateName);
+  emailField.addEventListener("focusout", validateEmail);
+  phoneField.addEventListener("focusout", validatePhone);
+}
 
-nameField.addEventListener("focusout", validateName);
-emailField.addEventListener("focusout", validateEmail);
-phoneField.addEventListener("focusout", validatePhone);
+// API
+let fullscreen = document.querySelector("#third-page");
+
+document.addEventListener(
+  "keydown",
+  function (e) {
+    if (e.keyCode == 13) {
+      toggleFullScreen();
+    }
+  },
+  false
+);
+
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+    fullscreen?.requestFullscreen();
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+}

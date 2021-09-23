@@ -3,7 +3,7 @@
 }
 .first-page h1 {
   margin: 10%;
-  color: white;
+  /* color: white; */
   font-size: 1.5em;
   padding-top: 20%;
 }
@@ -57,11 +57,11 @@
   margin-top: 10%;
 }
 .egenskap-container {
-  width: 45%;
+  width: 49%;
   height: auto;
   text-align: center;
   display: inline-block;
-  margin: 5%;
+  margin: 0 0.5% 5% 0.5%;
   transition: transform 1s, opacity 1s;
 }
 .egenskap-container img {
@@ -102,7 +102,6 @@
     display: inline-block;
     width: 40%;
     height: 30vh;
-    margin: 0 0 5% 0;
     padding: 0;
   }
   .egenskap-container img {
@@ -118,4 +117,10 @@ footer {
 footer a {
   text-decoration: none;
   color: white;
+}
+.vadsomhelst {
+  display: none;
+}
+.stapel-procent {
+  display: none;
 }
