@@ -11,18 +11,18 @@ if (slider) {
   const pausePlayDelay = 500;
   const nextSlideDelay = 5000;
   // slider headline
-  const omrade = document.getElementById("område");
-  const omradenOrd = ["Problemlösning", "Effektivisering", "Spelutveckling"];
+  const area = document.getElementById("område");
+  const areaArray = ["Problemlösning", "Effektivisering", "Spelutveckling"];
   const delayTyping = 200;
-  let bokstavsIndex = 0;
+  let characterIndex = 0;
   let typeInterval;
 
   const typeText = function (word) {
-    if (bokstavsIndex < omradenOrd[word].length) {
-      omrade.textContent += omradenOrd[word].charAt(bokstavsIndex);
-      bokstavsIndex++;
+    if (characterIndex < areaArray[word].length) {
+      area.textContent += areaArray[word].charAt(characterIndex);
+      characterIndex++;
     } else {
-      bokstavsIndex = 0;
+      characterIndex = 0;
       clearInterval(typeInterval);
     }
   };
@@ -33,7 +33,7 @@ if (slider) {
     );
   };
 
-  // Next slide
+  // Nästa slide
   const nextSlide = function () {
     if (currentSlide === maxSlides - 1) {
       currentSlide = 0;
@@ -42,7 +42,7 @@ if (slider) {
     }
 
     goToSlide(currentSlide);
-    omrade.textContent = "-";
+    area.textContent = "-";
     typeInterval = setInterval(function () {
       typeText(currentSlide);
     }, delayTyping);
@@ -72,7 +72,7 @@ if (slider) {
         : "";
       btnPause.classList.add("play");
       nextSlide();
-      bokstavsIndex = 0;
+      characterIndex = 0;
       typeText(currentSlide);
       run = setInterval(nextSlide, nextSlideDelay);
     }
@@ -84,22 +84,22 @@ if (slider) {
 }
 
 //Hamburgermeny
-let hamburgerMenyUppe = false;
+let burgerMenu = false;
 
-function hamburgerMenuOpenClose() {
+function burgerMenuOpenClose() {
   $(".mobile-menu").slideToggle(100, function () {
-    if (!hamburgerMenyUppe) {
+    if (!burgerMenu) {
       $(".page-to-dim").fadeTo(100, 0.1);
-      hamburgerMenyUppe = true;
+      burgerMenu = true;
     } else {
       $(".page-to-dim").fadeTo(100, 1);
-      hamburgerMenyUppe = false;
+      burgerMenu = false;
     }
     $(".menu-list").toggle();
   });
 }
 $(".burger-icon").click(function () {
-  hamburgerMenuOpenClose();
+  burgerMenuOpenClose();
 });
 
 //Smooth-scrolls mobile
@@ -119,7 +119,7 @@ $("#startsida").click(function () {
       scrollTop: $("#first-page").offset().top,
     },
     1000,
-    hamburgerMenuOpenClose()
+    burgerMenuOpenClose()
   );
 });
 $("#om-oss").click(function () {
@@ -128,7 +128,7 @@ $("#om-oss").click(function () {
       scrollTop: $("#second-page").offset().top,
     },
     1000,
-    hamburgerMenuOpenClose()
+    burgerMenuOpenClose()
   );
 });
 $("#vi-jobbar-inom").click(function () {
@@ -137,7 +137,7 @@ $("#vi-jobbar-inom").click(function () {
       scrollTop: $("#third-page").offset().top,
     },
     1000,
-    hamburgerMenuOpenClose()
+    burgerMenuOpenClose()
   );
 });
 $("#kontakta-oss").click(function () {
@@ -146,7 +146,7 @@ $("#kontakta-oss").click(function () {
       scrollTop: $("#fourth-page").offset().top,
     },
     1000,
-    hamburgerMenuOpenClose()
+    burgerMenuOpenClose()
   );
 });
 
@@ -194,24 +194,24 @@ $("#kontakta-oss-browser").click(function () {
   );
 });
 
-//deklarera staplarna som ska fyllas
-const staplar = $(".skillbox-to-fill");
-const procentStapel = function (stapel, procent) {
-  staplar[stapel - 1].procent = procent;
+//deklarera staplar som ska fyllas
+const bars = $(".skillbox-to-fill");
+const percentBar = function (stapel, procent) {
+  bars[stapel - 1].procent = procent;
 };
 
 //hämta enbart siffror från klassen stapel-to-get,
-var kunskapsProcent = $(".stapel-procent").map(function () {
+var barPercent = $(".stapel-procent").map(function () {
   return $(this).text().replace(/[^\d]/g, "");
 });
-//funktion för att föra in rätt parametrar i procentStapel
+//funktion för att föra in rätt parametrar i percentBar
 for (let i = 1; i < $(".stapel-procent").length + 1; i++) {
-  procentStapel(i, kunskapsProcent[i - 1]);
-  console.log((i, kunskapsProcent[i - 1]));
+  percentBar(i, barPercent[i - 1]);
+  console.log((i, barPercent[i - 1]));
 }
 
-//funktion för att fylla staplarna
-const fyllstapel = function (stapel) {
+//funktion för att fylla barsna
+const fillBar = function (stapel) {
   let i = 0;
   setInterval(function () {
     if (i >= stapel.procent) return;
@@ -220,23 +220,23 @@ const fyllstapel = function (stapel) {
   }, 30);
 };
 //Skapa en observer callback
-const stapelCallback = function (entries) {
+const barCallback = function (entries) {
   entries.forEach(function (e) {
     if (!e.isIntersecting) return;
-    fyllstapel(e.target);
-    egenskapsObserver.unobserve(e.target);
+    fillBar(e.target);
+    skillObserver.unobserve(e.target);
   });
 };
 
 //Skapa en observer
-const egenskapsObserver = new IntersectionObserver(stapelCallback, {
+const skillObserver = new IntersectionObserver(barCallback, {
   root: null,
   threshold: 0.15,
 });
 
-// Fyll staplarna
-Array.from(staplar).forEach(function (egenskap) {
-  egenskapsObserver.observe(egenskap);
+// Observera alla staplar
+Array.from(bars).forEach(function (skill) {
+  skillObserver.observe(skill);
 });
 
 //AJAX

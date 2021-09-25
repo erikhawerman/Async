@@ -3,7 +3,7 @@ $(document).ready(function () {
   const btnMe = document.getElementById("vem-är-jag");
   const secondPage = document.querySelector(".second-page");
   const thirdPage = document.querySelector(".third-page");
-  const egenskaper = document.querySelectorAll(".egenskap-container");
+  const skills = document.querySelectorAll(".egenskap-container");
 
   btnSkills.addEventListener("click", function () {
     secondPage.scrollIntoView({ behavior: "smooth" });
@@ -12,22 +12,22 @@ $(document).ready(function () {
     thirdPage.scrollIntoView({ behavior: "smooth" });
   });
 
-  //visa egenskaper
-  const visaEgenskaper = function (entries) {
+  //visa skills
+  const skillsCallback = function (entries) {
     entries.forEach(function (e) {
       if (!e.isIntersecting) return;
       e.target.classList.remove("hidden");
-      observerEgenskaper.unobserve(e.target);
+      observeSkills.unobserve(e.target);
     });
   };
-  const observerEgenskaper = new IntersectionObserver(visaEgenskaper, {
+  const observeSkills = new IntersectionObserver(skillsCallback, {
     root: null,
     threshold: 0.15,
   });
 
-  egenskaper.forEach(function (egenskap) {
-    observerEgenskaper.observe(egenskap);
+  skills.forEach(function (egenskap) {
+    observeSkills.observe(egenskap);
   });
 
-  console.log(egenskaper);
+  console.log(skills);
 });
